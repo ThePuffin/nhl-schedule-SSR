@@ -1,0 +1,17 @@
+---
+import Card from './Card.astro';
+
+const dataTeams = await fetch('https://api-web.nhle.com/v1/standings/now');
+const teams = await dataTeams.json();
+---
+
+<ul>
+  <li>teams</li>
+  <!-- {
+    teams.map((team) => (
+      <li>
+        <Card title={team.teamName.fr} body={team.placeName.default} logo={team.teamLogo} />
+      </li>
+    ))
+  } -->
+</ul>
