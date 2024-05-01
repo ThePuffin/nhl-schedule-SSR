@@ -11,7 +11,18 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
+    "@astrojs/react": "^3.3.1",
     "astro": "^4.6.0",
+    "date-fns": "^2.30.0",
+    "gh-pages": "^5.0.0",
+    "lodash": "^4.17.21",
+    "materialize-css": "^1.0.0",
+    "moment": "^2.29.4",
+    "react": "^18.3.1",
+    "react-date-range": "^2.0.1",
+    "react-dom": "^18.3.1",
+    "react-select": "^5.8.0",
+    "react-scripts": "5.0.1",
     "typescript": "^5.3.3"
   },
   "devDependencies": {

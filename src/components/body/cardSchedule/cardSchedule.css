@@ -1,0 +1,96 @@
+.ext-box {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.card {
+  font-size: medium;
+  justify-content: center;
+  height: 92%;
+  text-align: center;
+  box-shadow: 0.1vh 0.1vh 0.1vh 0.1vh rgba(0, 0, 0, 0.2);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: white;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 500px) {
+  h4 {
+    font-size: large;
+    font-weight: bold;
+    margin: 1.5vh 0;
+  }
+
+  h3 {
+    font-size: large;
+    font-weight: bold;
+  }
+}
+
+.cardGame {
+  background-color: white;
+  color: white;
+}
+
+.selected {
+  opacity: 0.5;
+  font-style: oblique;
+  font-family: 'Times New Roman';
+}
+
+.cardDate {
+  background-color: darkgray;
+  color: whitesmoke;
+  cursor: not-allowed !important;
+}
+
+.awayGame {
+  color: grey;
+  background-color: white;
+}
+
+p {
+  font-size: small;
+}
+
+.arena {
+  font-size: x-small;
+}
+
+.vs {
+  font-size: x-small;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.hideDate {
+  display: none;
+}
+
+.whiteCard {
+  display: none;
+  cursor: not-allowed;
+}
+
+@media only screen and ((max-width: 599px) or (max-height: 500px)) {
+  .cardText {
+    font-size: 90%;
+    line-height: 1vh;
+  }
+
+  h4 {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-weight: bold;
+  }
+
+  .hideDate {
+    display: inherit;
+  }
+  .arena {
+    white-space: nowrap;
+  }
+}
