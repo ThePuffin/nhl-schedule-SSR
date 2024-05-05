@@ -35,6 +35,7 @@ const maxTeamToSelect = window.innerWidth > 500 ? 5 : 4;
 class Body extends React.Component {
   constructor(props) {
     super(props);
+    this.teams = props.teams
     this.handleChangeTeam = this.handleChangeTeam.bind(this);
     this.handleChangeDateRange = this.handleChangeDateRange.bind(this);
     this.hadOrRemoveGame = this.hadOrRemoveGame.bind(this);

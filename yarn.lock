@@ -103,10 +103,10 @@
   dependencies:
     prismjs "^1.29.0"
 
-"@astrojs/react@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/react/-/react-3.3.1.tgz#cd5e05addf6ee761e42419af81f2246c596c5b4e"
-  integrity sha512-dwN6B+C0hQ1jpeQ5EckICpqv76t6RxEslldCP0UQ/ospolNk8GjqL11X/xQSbftiQvGWRMT0Tj5f0Xk17k5qJQ==
+"@astrojs/react@^3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@astrojs/react/-/react-3.3.2.tgz#22d45218243862190c1e982725234071813c2b48"
+  integrity sha512-UNdOZ+qFjTZkfz5A8PauMpRh+qD1NPFdHB0GT4ksBbY4fghcbgU1p8Ugy696glL3/nwwIdq44I/KS2vMFxZzTA==
   dependencies:
     "@vitejs/plugin-react" "^4.2.1"
     ultrahtml "^1.5.3"
@@ -2642,6 +2642,13 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.7.tgz#50ae4353eaaddc04044279812f52c8c65857dbcb"
   integrity sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==
 
+"@types/react-dom@^18.3.0":
+  version "18.3.0"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
+  integrity sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.0":
   version "4.4.10"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.10.tgz#6ee71127bdab1f18f11ad8fb3322c6da27c327ac"
@@ -2649,7 +2656,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@^18.3.1":
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.1.tgz#fed43985caa834a2084d002e4771e15dfcbdbe8e"
   integrity sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==

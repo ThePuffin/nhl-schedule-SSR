@@ -1,61 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header/header';
-import Body from '../components/body/body';
+import Body from '../components/body/Body';
+import Loader from '../components/body/loader/Loader';
 const title = 'Sport schedule';
+import allTeamsJSON from '../temporaryData/allTeams.json';
+
+let dataTeams = { standings: [] };
+try {
+  const fetchTeams = await fetch('https://api-web.nhle.com/v1/standings/now');
+  dataTeams = await fetchTeams.json();
+  // TODO: if success register it in a file
+} catch (error) {
+  console.log('fakeData');
+  dataTeams = allTeamsJSON;
+}
+
+const resTeams = dataTeams?.standings || [];
+
+const activeTeams = resTeams
+  .map((team) => {
+    team.value = team.teamAbbrev?.default;
+    team.id = team.teamAbbrev?.default;
+    team.label = team.teamName?.default;
+    return team;
+  })
+  .sort((a, b) => (a.placeName?.default > b.placeName?.default ? 1 : -1));
+
+const someProps = {
+  allTeams: activeTeams,
+};
 ---
 
 <Layout title={title}>
   <main>
     <div class="App" style={{ overflow: 'hidden', height: '100vh' }}>
-      <Header />
-      <Body client:only="preact" />
+      <Header title={title} />
+      {activeTeams.length && <Body {...someProps} client:visible />}
+      {activeTeams.length === 0 && <Loader />}
     </div>
   </main>
 </Layout>
-
-<style>
-  .App {
-    text-align: center;
-  }
-
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-
-  .App-link {
-    color: #61dafb;
-  }
-
-  .unclickable {
-    pointer-events: none;
-    cursor: not-allowed;
-  }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-</style>
