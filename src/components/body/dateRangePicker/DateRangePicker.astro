@@ -1,0 +1,42 @@
+---
+const { startDate, endDate, dataFormat = 'YYYY-MM-dd' } = Astro.props;
+console.log({ startDate, endDate });
+
+import RangePicker from './rangePicker';
+import moment from 'moment';
+const now = moment();
+const year = new Date().getFullYear();
+const startSeason =
+  now.isBefore(moment(`${year} 06 30`)) && now.isSameOrAfter(moment(`${year} 01 01`))
+    ? moment(`${year - 1} 10 01 `).format(dataFormat)
+    : moment(`${year} 10 01 `).format(dataFormat);
+const endSeason =
+  now.isAfter(moment(`${year} 06 30`)) && now.isBefore(moment(`${year + 1} 01 01`))
+    ? moment(`${year + 1} 06 30 `).format(dataFormat)
+    : moment(`${year} 06 30 `).format(dataFormat);
+
+const handleChangeDateRange = async ({ startDate, endDate }) => {
+  let startDateSelected = startDate;
+  let endDateSelected = endDate;
+
+  // this.setState({ startDate: startDateSelected, endDate: endDateSelected, showPicker: false });
+
+  localStorage.setItem('selectedDates', JSON.stringify({ startDate: startDateSelected, endDate: endDateSelected }));
+};
+---
+
+<div class="input-field col s12 m2 offset-m4" id="changeDate">
+  <p>ici date time picker</p>
+  <RangePicker
+    dateTimePickerData={{
+      startSeason: { startSeason },
+      endSeason: { endSeason },
+      handleChangeDateRange: handleChangeDateRange,
+      startDate: { startDate },
+      endDate: { endDate },
+      dataFormat: { dataFormat },
+    }}
+    client:load
+  />
+  <p>ici date time picker</p>
+</div>

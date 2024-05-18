@@ -3,8 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/header/header';
 import Body from '../components/body/Body';
 import Loader from '../components/body/loader/Loader';
-const title = 'Sport schedule';
+import DateRangerPicker from '../components/body/dateRangePicker/DateRangePicker.astro';
+import moment from 'moment';
 import allTeamsJSON from '../temporaryData/allTeams.json';
+import { ViewTransitions } from 'astro:transitions';
+
+const title = 'Sport schedule';
+
+const date = new Date();
+const startDate = date.toISOString().split('T')[0];
+const day = date.getDate();
+const newDay = day + 7;
+date.setDate(newDay);
+const endDate = date.toISOString().split('T')[0];
 
 let dataTeams = { standings: [] };
 try {
@@ -36,6 +47,8 @@ const someProps = {
   <main>
     <div class="App" style={{ overflow: 'hidden', height: '100vh' }}>
       <Header title={title} />
+      <DateRangerPicker startDate={startDate} endDate={endDate} />
+      <ViewTransitions />
       {activeTeams.length && <Body {...someProps} client:visible />}
       {activeTeams.length === 0 && <Loader />}
     </div>

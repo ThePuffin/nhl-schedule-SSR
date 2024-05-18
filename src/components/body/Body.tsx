@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Selector from './selector/selector';
-import DatePicker from '../datePicker/DatePicker';
+
 import './Body.css';
-import moment from 'moment';
 
 export default function Body({ allTeams }) {
   const maxVisible = 5;
@@ -18,7 +17,6 @@ export default function Body({ allTeams }) {
   return (
     <>
       <div>
-        <DatePicker />
         <div className="grid">
           {teamsSelectedIds.map((teamId, index) => (
             <div className="col s3 m2">

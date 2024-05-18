@@ -9,10 +9,12 @@ import { DateRange } from 'react-date-range';
 let count = 0;
 let data, handleChangeDateRange, dataFormat;
 
-export default class DateRangePicker extends React.Component<any> {
+export default class RangePicker extends React.Component<any> {
   constructor(props) {
     super(props);
     data = props.dateTimePickerData;
+    console.log(data);
+
     dataFormat = data.dataFormat;
     data.key = 'selection';
   }
@@ -25,6 +27,7 @@ export default class DateRangePicker extends React.Component<any> {
 
   handleSelect = async ({ selection }) => {
     count = count + 1;
+    console.log(count);
 
     this.setState(selection);
     if (count === 2) {
@@ -48,7 +51,7 @@ export default class DateRangePicker extends React.Component<any> {
 
       return (
         <div>
-          <DateRange
+          {/* <DateRange
             onChange={this.handleSelect}
             ranges={[selectionRange]}
             minDate={new Date(data.startSeason)}
@@ -56,7 +59,8 @@ export default class DateRangePicker extends React.Component<any> {
             showMonthAndYearPickers={false}
             moveRangeOnFirstSelection={false}
             editableDateInputs={true}
-          />
+          /> */}
+          <p>ici</p>
         </div>
       );
     } else {

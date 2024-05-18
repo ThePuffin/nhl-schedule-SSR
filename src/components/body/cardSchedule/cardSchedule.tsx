@@ -1,8 +1,6 @@
 import './cardSchedule.css';
 import './colorsTeam.css';
 
-import moment from 'moment';
-
 const CardSchedule = (props) => {
   const data = props.teamDate ? props.teamDate : props.gameDate;
   let hideDate = props.hideDate;
@@ -23,7 +21,7 @@ const CardSchedule = (props) => {
           <div className={data.show ? 'ext-box' : 'whiteCard'}>
             <div>
               <p className={hideDate ? 'cardText hideDate' : 'cardText'}>
-                {moment(data.gameDate).format('ddd DD-MM-YY')}
+                {new Date(data.gameDate).toISOString().split('T')[0]}
               </p>
             </div>
             <h4 className="cardText">{data.awayTeamShort}</h4>
@@ -38,7 +36,7 @@ const CardSchedule = (props) => {
     return (
       <div className="card cardDate">
         <div className="ext-box">
-          <p className="cardText">{moment(data.split(' ').reverse().join(' ')).format('dddd')} </p>
+          <p className="cardText">{data} </p>
           <h3 className="cardText">{data}</h3>
           <br />
         </div>
