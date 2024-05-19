@@ -15,6 +15,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.6.0",
+    "axios": "^1.6.8",
     "date-fns": "^2.30.0",
     "gh-pages": "^5.0.0",
     "lodash": "^4.17.21",

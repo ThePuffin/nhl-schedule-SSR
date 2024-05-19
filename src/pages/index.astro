@@ -6,7 +6,10 @@ import Loader from '../components/body/loader/Loader';
 import DateRangerPicker from '../components/body/dateRangePicker/DateRangePicker.astro';
 import moment from 'moment';
 import allTeamsJSON from '../temporaryData/allTeams.json';
+import lastSave from '../../nhlData.json';
 import { ViewTransitions } from 'astro:transitions';
+import fs from 'fs';
+import axios from 'axios';
 
 const title = 'Sport schedule';
 
@@ -17,14 +20,16 @@ const newDay = day + 7;
 date.setDate(newDay);
 const endDate = date.toISOString().split('T')[0];
 
-let dataTeams = { standings: [] };
+let dataTeams = allTeamsJSON;
 try {
-  const fetchTeams = await fetch('https://api-web.nhle.com/v1/standings/now');
-  dataTeams = await fetchTeams.json();
-  // TODO: if success register it in a file
+  const fetchTeams = await axios.get('https://api-web.nhle.com/v1/standings/now');
+
+  dataTeams = await fetchTeams.data;
+  fs.writeFileSync('nhlData.json', JSON.stringify(dataTeams));
+  console.log('get data');
 } catch (error) {
-  console.log('fakeData');
-  dataTeams = allTeamsJSON;
+  console.log('fakeData', error);
+  dataTeams = lastSave;
 }
 
 const resTeams = dataTeams?.standings || [];
@@ -39,7 +44,7 @@ const activeTeams = resTeams
   .sort((a, b) => (a.placeName?.default > b.placeName?.default ? 1 : -1));
 
 const someProps = {
-  allTeams: activeTeams,
+  allTeams: activeTeams || [],
 };
 ---
 

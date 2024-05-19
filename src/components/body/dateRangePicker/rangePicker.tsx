@@ -13,7 +13,7 @@ export default class RangePicker extends React.Component<any> {
   constructor(props) {
     super(props);
     data = props.dateTimePickerData;
-    console.log(data);
+    // console.log(data);
 
     dataFormat = data.dataFormat;
     data.key = 'selection';
@@ -27,7 +27,7 @@ export default class RangePicker extends React.Component<any> {
 
   handleSelect = async ({ selection }) => {
     count = count + 1;
-    console.log(count);
+    // console.log(count);
 
     this.setState(selection);
     if (count === 2) {
