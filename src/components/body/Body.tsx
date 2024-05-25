@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Selector from './selector/selector';
+import currentSeason from '../../temporaryData/currentSeason.json'
 
 import './Body.css';
 
-export default function Body({ allTeams }) {
+export default function Body(props) {
   const maxVisible = 5;
-  const [teams, setTeams] = useState(allTeams);
+  const { allTeams } = props;
+  const [teams = [], setTeams = []] = useState(allTeams);
   const teamsSelectedIds = teams
     .map((team, id) => {
       if (id < maxVisible) {
@@ -13,6 +15,12 @@ export default function Body({ allTeams }) {
       }
     })
     .filter((t) => t);
+  const teamsGames = teamsSelectedIds.map((teamSelected)=>{
+    return currentSeason[teamSelected]
+  })
+  console.log('iciiii', teamsGames[0]);
+  
+
 
   return (
     <>

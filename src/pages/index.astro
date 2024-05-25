@@ -20,6 +20,10 @@ const newDay = day + 7;
 date.setDate(newDay);
 const endDate = date.toISOString().split('T')[0];
 
+const someProps = {
+  allTeams: [],
+};
+
 let dataTeams = allTeamsJSON;
 try {
   const fetchTeams = await axios.get('https://api-web.nhle.com/v1/standings/now');
@@ -32,20 +36,22 @@ try {
   dataTeams = lastSave;
 }
 
-const resTeams = dataTeams?.standings || [];
+try {
+  const resTeams = dataTeams?.standings || [];
 
-const activeTeams = resTeams
-  .map((team) => {
-    team.value = team.teamAbbrev?.default;
-    team.id = team.teamAbbrev?.default;
-    team.label = team.teamName?.default;
-    return team;
-  })
-  .sort((a, b) => (a.placeName?.default > b.placeName?.default ? 1 : -1));
+  const activeTeams = resTeams
+    .map((team) => {
+      team.value = team.teamAbbrev?.default;
+      team.id = team.teamAbbrev?.default;
+      team.label = team.teamName?.default;
+      return team;
+    })
+    .sort((a, b) => (a.placeName?.default > b.placeName?.default ? 1 : -1));
 
-const someProps = {
-  allTeams: activeTeams || [],
-};
+  someProps.allTeams = activeTeams;
+} catch (error) {
+  console.log('whoopsie');
+}
 ---
 
 <Layout title={title}>
@@ -54,8 +60,8 @@ const someProps = {
       <Header title={title} />
       <DateRangerPicker startDate={startDate} endDate={endDate} />
       <ViewTransitions />
-      {activeTeams.length && <Body {...someProps} client:visible />}
-      {activeTeams.length === 0 && <Loader />}
+      {someProps?.allTeams?.length && <Body {...someProps} client:load />}
+      {someProps?.allTeams?.length === 0 && <Loader />}
     </div>
   </main>
 </Layout>

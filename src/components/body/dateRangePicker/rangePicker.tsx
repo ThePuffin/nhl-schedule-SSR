@@ -60,7 +60,7 @@ export default class RangePicker extends React.Component<any> {
             moveRangeOnFirstSelection={false}
             editableDateInputs={true}
           /> */}
-          <p>ici</p>
+          <p>uncomment upper when dateRange is needed</p>
         </div>
       );
     } else {
